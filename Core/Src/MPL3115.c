@@ -8,7 +8,7 @@ uint8_t MPL3115_Initialise(MPL3115 * dev, I2C_HandleTypeDef * i2cHandle)
 
 	MPL3115_ReadRegisters (dev, MPL3115_WHO_I_AM, &status, sizeof(status));
 
-	if(status == MPL3115_I_AM)
+	if(MPL3115_I_AM == status)
 	{
 	}
 
