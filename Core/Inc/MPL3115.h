@@ -34,14 +34,14 @@ typedef enum {
 } RST_Type;
 
 typedef enum {
-	OS_Ratio_128 = 0b111,
-	OS_Ratio_64 = 0b110,
-	OS_Ratio_32 = 0b101,
-	OS_Ratio_16 = 0b100,
-	OS_Ratio_8 = 0b011,
-	OS_Ratio_4 = 0b010,
+	OS_Ratio_1 = 0b000,
 	OS_Ratio_2 = 0b001,
-	OS_Ratio_1 = 0b000
+	OS_Ratio_4 = 0b010,
+	OS_Ratio_8 = 0b011,
+	OS_Ratio_16 = 0b100,
+	OS_Ratio_32 = 0b101,
+	OS_Ratio_64 = 0b110,
+	OS_Ratio_128 = 0b111
 } OS_Type;
 
 typedef enum {
