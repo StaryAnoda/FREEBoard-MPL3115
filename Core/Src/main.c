@@ -119,6 +119,7 @@ int main(void)
 	MX_I2C1_Init();
 	MX_USART2_UART_Init();
 	/* USER CODE BEGIN 2 */
+	check_IIC_addres();
 	MPL3115_Initialise(&mpl, &hi2c1);
 
 	/* USER CODE END 2 */

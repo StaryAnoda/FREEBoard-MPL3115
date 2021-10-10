@@ -5,6 +5,9 @@
 
 #define MPL3115_I2C_ADDR (0xC0)
 
+#define MPL3115_WHO_I_AM (0x0C)
+#define MPL3115_I_AM (0xC4)
+
 #define MPL3115_CTRL_REG1 (0x26)
 #define MPL3115_PT_DATA_CFG (0x13)
 
