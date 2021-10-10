@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "MPL3115.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,8 +47,8 @@ I2C_HandleTypeDef hi2c1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-#define BUFFER_TX_SIZE 64
-uint8_t BuferTX[BUFFER_TX_SIZE];
+#define BUFFER_UART_TX_SIZE 64
+uint8_t bufer_tx[BUFFER_UART_TX_SIZE];
 uint8_t data;
 /* USER CODE END PV */
 
@@ -63,8 +62,8 @@ void check_IIC_addres(void)
 {
 	HAL_StatusTypeDef result;
 
-	sprintf((char *)BuferTX, "START IIC BUS SCANNING \r\n");
-	HAL_UART_Transmit(&huart2, BuferTX, strlen((char *)BuferTX), HAL_MAX_DELAY);
+	sprintf((char *)bufer_tx, "START IIC BUS SCANNING \r\n");
+	HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 
 	for (uint8_t i = 1; i < 128; i++)
 	{
@@ -74,13 +73,13 @@ void check_IIC_addres(void)
 		}
 		if (result == HAL_OK)
 		{
-			sprintf((char *)BuferTX, "%i \r\n", (i << 1));
-			HAL_UART_Transmit(&huart2, BuferTX, strlen((char *)BuferTX), HAL_MAX_DELAY);
+			sprintf((char *)bufer_tx, "%i \r\n", (i << 1));
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 			HAL_Delay(1000);
 		}
 	}
-	sprintf((char *)BuferTX, "STOP IIC BUS SCANNING \r\n");
-	HAL_UART_Transmit(&huart2, BuferTX, strlen((char *)BuferTX), HAL_MAX_DELAY);
+	sprintf((char *)bufer_tx, "STOP IIC BUS SCANNING \r\n");
+	HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 }
 /* USER CODE END PFP */
 
@@ -132,13 +131,13 @@ int main(void)
 
 		if(data & 0x08)
 		{
-			MPL3115_ReadTemperature (&mpl);
-			sprintf ((char *)BuferTX, "Temperature: %.2f *C \r\n", mpl.temperature);
-			HAL_UART_Transmit(&huart2, BuferTX, strlen((char *)BuferTX), HAL_MAX_DELAY);
+			MPL3115_ReadTemperature(&mpl);
+			sprintf ((char *)bufer_tx, "Temperature: %.2f *C \r\n", mpl.temperature);
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 
 			MPL3115_ReadPressure (&mpl);
-			sprintf ((char *)BuferTX, "Pressure: %.2f hPa \r\n",  mpl.pressure);
-			HAL_UART_Transmit (&huart2, BuferTX, strlen((char *)BuferTX), HAL_MAX_DELAY);
+			sprintf ((char *)bufer_tx, "Pressure: %.2f hPa \r\n",  mpl.pressure);
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 		}
 		/* USER CODE END WHILE */
 

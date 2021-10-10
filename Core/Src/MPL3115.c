@@ -1,6 +1,6 @@
 #include <MPL3115.h>
 
-uint8_t MPL3115_Initialise (MPL3115 * dev, I2C_HandleTypeDef * i2cHandle)
+uint8_t MPL3115_Initialise(MPL3115 * dev, I2C_HandleTypeDef * i2cHandle)
 {
 	uint8_t status, settings;
 
@@ -26,7 +26,7 @@ uint8_t MPL3115_Initialise (MPL3115 * dev, I2C_HandleTypeDef * i2cHandle)
 	return status;
 }
 
-HAL_StatusTypeDef MPL3115_ReadTemperature (MPL3115 * dev)
+HAL_StatusTypeDef MPL3115_ReadTemperature(MPL3115 * dev)
 {
 	enum{OUT_T_MSB, OUT_T_LSB};
 	uint8_t OUT_T[2], status;
@@ -53,7 +53,7 @@ HAL_StatusTypeDef MPL3115_ReadTemperature (MPL3115 * dev)
 	return status;
 }
 
-HAL_StatusTypeDef MPL3115_ReadPressure (MPL3115 * dev)
+HAL_StatusTypeDef MPL3115_ReadPressure(MPL3115 * dev)
 {
 	enum{OUT_P_MSB, OUT_P_CSB, OUT_P_LSB};
 	uint8_t OUT_P[3], status;
@@ -75,17 +75,17 @@ HAL_StatusTypeDef MPL3115_ReadPressure (MPL3115 * dev)
 	return status;
 }
 
-HAL_StatusTypeDef MPL3115_ReadRegister (MPL3115 * dev, uint8_t reg, uint8_t * data)
+HAL_StatusTypeDef MPL3115_ReadRegister(MPL3115 * dev, uint8_t reg, uint8_t * data)
 {
-	return HAL_I2C_Mem_Read (dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
+	return HAL_I2C_Mem_Read(dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
 }
 
-HAL_StatusTypeDef MPL3115_ReadRegisters (MPL3115 * dev, uint8_t reg, uint8_t * data, uint8_t len)
+HAL_StatusTypeDef MPL3115_ReadRegisters(MPL3115 * dev, uint8_t reg, uint8_t * data, uint8_t len)
 {
-	return HAL_I2C_Mem_Read (dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
+	return HAL_I2C_Mem_Read(dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
 }
 
-HAL_StatusTypeDef MPL3115_WriteRegister (MPL3115 * dev, uint8_t reg, uint8_t * data)
+HAL_StatusTypeDef MPL3115_WriteRegister(MPL3115 * dev, uint8_t reg, uint8_t * data)
 {
-	return HAL_I2C_Mem_Write (dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
+	return HAL_I2C_Mem_Write(dev -> i2cHandle, MPL3115_I2C_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
 }

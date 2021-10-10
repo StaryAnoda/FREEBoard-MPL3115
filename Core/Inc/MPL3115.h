@@ -14,33 +14,60 @@
 #define MPL3115_OUT_P_CSB (0x02)
 #define MPL3115_OUT_P_LSB (0x03)
 
-
 #define MPL3115_OUT_T_MSB (0x04)
 #define MPL3115_OUT_T_LSB (0x05)
 
-typedef enum {SBYS_DISABLED = 0b0, SBYS_Enabled = 0b1} SBYS_Type;
-typedef enum {OST_DISABLED = 0b0, OST_Enabled = 0b1} OST_Type;
-typedef enum {RST_DISABLED = 0b0, RST_Enabled = 0b1} RST_Type;
-typedef enum {OS_Ratio_128 = 0b111, OS_Ratio_64 = 0b110, OS_Ratio_32 = 0b101, OS_Ratio_16 = 0b100, OS_Ratio_8 = 0b011, OS_Ratio_4 = 0b010 ,OS_Ratio_2 = 0b001, OS_Ratio_1 = 0b000} OS_Type;
-typedef enum {Res = 0b0} Res_Type;
-typedef enum {ALT_DISABLED = 0b0, ALT_Enabled = 0b1} ALT_Type;
+
+typedef enum {
+	SBYS_DISABLED = 0b0,
+	SBYS_Enabled = 0b1
+}SBYS_Type;
+
+typedef enum {
+	OST_DISABLED = 0b0,
+	OST_Enabled = 0b1
+} OST_Type;
+
+typedef enum {
+	RST_DISABLED = 0b0,
+	RST_Enabled = 0b1
+} RST_Type;
+
+typedef enum {
+	OS_Ratio_128 = 0b111,
+	OS_Ratio_64 = 0b110,
+	OS_Ratio_32 = 0b101,
+	OS_Ratio_16 = 0b100,
+	OS_Ratio_8 = 0b011,
+	OS_Ratio_4 = 0b010,
+	OS_Ratio_2 = 0b001,
+	OS_Ratio_1 = 0b000
+} OS_Type;
+
+typedef enum {
+	Res = 0b0
+} Res_Type;
+typedef enum {
+	ALT_DISABLED = 0b0,
+	ALT_Enabled = 0b1
+} ALT_Type;
 
 typedef union
 {
-   struct
-   {
-	   SBYS_Type SBYS :1;
-	   OST_Type OST:1;
-	   RST_Type AZEN :1;
-	   OS_Type OS :3;
-	   Res_Type Res :1;
-	   ALT_Type ALT :1;
-   };
-   uint8_t byte;
-}MPL3115_REG_CTRL1_VALUE;
+	struct
+	{
+		SBYS_Type SBYS :1;
+		OST_Type OST:1;
+		RST_Type AZEN :1;
+		OS_Type OS :3;
+		Res_Type Res :1;
+		ALT_Type ALT :1;
+	};
+	uint8_t byte;
+} MPL3115_REG_CTRL1_VALUE;
 
-typedef struct {
-
+typedef struct
+{
 	I2C_HandleTypeDef * i2cHandle;
 
 	float temperature;
