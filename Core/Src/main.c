@@ -73,7 +73,7 @@ void check_IIC_addres(void)
 		}
 		if (result == HAL_OK)
 		{
-			sprintf((char *)bufer_tx, "%i \r\n", (i << 1));
+			sprintf((char *)bufer_tx, "0x%02x \r\n", (i << 1));
 			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 			HAL_Delay(1000);
 		}
