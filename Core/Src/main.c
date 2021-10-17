@@ -18,6 +18,7 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <MAG3110.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -25,6 +26,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "MPL3115.h"
+#include "MAG3110.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -121,7 +123,7 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 	check_IIC_addres();
 	MPL3115_Initialise(&mpl, &hi2c1);
-
+	MAG3310_Initialise(&hi2c1);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
