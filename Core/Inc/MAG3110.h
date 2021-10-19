@@ -10,4 +10,8 @@
 
 uint8_t MAG3310_Initialise(I2C_HandleTypeDef * i2cHandle);
 
+int read_x(I2C_HandleTypeDef * i2cHandle);
+int read_y(I2C_HandleTypeDef * i2cHandle);
+int read_z(I2C_HandleTypeDef * i2cHandle);
+
 #endif

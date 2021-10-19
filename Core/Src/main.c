@@ -142,6 +142,22 @@ int main(void)
 			sprintf ((char *)bufer_tx, "Pressure: %.2f hPa \r\n",  mpl.pressure);
 			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
 		}
+
+		HAL_I2C_Mem_Read(&hi2c1, MAG3110_I2C_ADDR, 0x00, I2C_MEMADD_SIZE_8BIT, &data, sizeof(data), HAL_MAX_DELAY);
+
+		if(data & 0x08)
+		{
+			sprintf ((char *)bufer_tx, "X %i \r\n", read_x(&hi2c1));
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
+
+			sprintf ((char *)bufer_tx, "Y %i \r\n", read_y(&hi2c1));
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
+
+			sprintf ((char *)bufer_tx, "Z %i \r\n", read_z(&hi2c1));
+			HAL_UART_Transmit(&huart2, bufer_tx, strlen((char *)bufer_tx), HAL_MAX_DELAY);
+		}
+		HAL_Delay(1000);
+
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
